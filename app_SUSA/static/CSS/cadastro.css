@@ -1,0 +1,184 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #c0d6c3;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; 
+}
+
+select {
+   display: none;
+}
+
+.container {
+    background-color: #5aad5f;  
+    padding: 40px;
+    border-radius: 15px;  
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);  
+    width: 700px;  
+    height: 90%;  
+    overflow-y: auto;  
+}
+.centralizar{
+    text-align: center;
+}
+h1 {
+    color: #fff;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+h2, h3{
+    padding: 20px;
+}
+
+input {
+    width: 400px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px; 
+    border: 1px solid #ccc;
+    font-size: 16px;
+    background-color: #f1f1f1; 
+}
+
+input::placeholder {
+    color: #999;  
+}
+
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #4e7d4b; 
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #3f6640; 
+}
+
+label {
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 5px;
+    display: block;
+    text-align: left;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    width: 150px;
+    margin: 10px auto;
+}
+
+.custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.custom-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #20C94F;
+    color: white;
+    border-radius: 5px;
+    z-index: 99;
+    display: none;
+}
+
+.custom-options.open {
+    display: block;
+}
+
+.custom-option {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.custom-option:hover {
+    background-color: #148b35;
+}
+
+.custom-select-trigger {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #20C94F;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+#busca-cep{
+    display: flex;
+    width: 400px;
+    margin: 0 auto;
+}
+#buscarEndereco {
+    width: 80px;
+    font-size: 13px;
+    align-items: center;
+}
+#cep {
+    width: 250px;
+    margin-top: 10px;
+}
+#voltar{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.senha-container {
+    position: relative;
+    width: 400px;
+    margin: 0 auto;
+}
+
+.mostrar-senha-button {
+    position: absolute;
+    right: 10px;
+    top: 40%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#senhaClinica, #confirm-senhaCli, #senhaTutor, #confirm-senhaTutor {
+    width: 100%;
+    padding-right: 60px; 
+    padding-left: 10px;
+}
+
+#erros {
+    text-justify: center;
+    margin-bottom: 20px;
+}

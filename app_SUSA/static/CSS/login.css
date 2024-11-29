@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #c0d6c3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.login-box {
+    background-color: #5aad5f;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+}
+
+.logo-image {
+    width: 65px;
+    height: 65px;
+}
+
+.login-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    margin: 20px 0;
+}
+
+.login-input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.login-button {
+    width: 80%;
+    padding: 10px;
+    background-color: #4e7d4b;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #3f6640;
+}
+
+.login-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.login-link {
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+    padding: 3px;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
+
+.senha-container {
+    position: relative;
+    width: auto;
+    margin: 10px 0;
+}
+
+.mostrar-senha-button {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+}
+
+.mensagem-error {
+    text-justify: center;
+    margin-bottom: 10px;
+    color: rgb(209, 25, 25);
+}
+

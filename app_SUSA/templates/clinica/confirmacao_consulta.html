@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação de Consulta</title>
+    <link rel="stylesheet" href="{% static 'CSS/confirmacao_consulta.css' %}">
+</head>
+
+<body>
+    <div class="container">
+    <a href="/agendamentos"><img src="{% static 'imagens/back.png' %}" id="voltar" draggable="false"></a>
+        <h1>Confirmação de Consulta</h1>
+        <div class="detalhes">
+            <table class="tabela-consulta">
+                <tr>
+                    <th>Status:</th>
+                    <td>{{ agendamento.status }}</td>
+                </tr>
+                <tr>
+                    <th>Tutor:</th>
+                    <td>{{ agendamento.tutor_cpf.nome }}</td>
+                </tr>
+                <tr>
+                    <th>Pet:</th>
+                    <td>{{ agendamento.pet_id.nome }}</td>
+                </tr>
+                <tr>
+                    <th>E-mail:</th>
+                    <td>{{ agendamento.tutor_cpf.email }}</td>
+                </tr>
+                <tr>
+                    <th>Telefone:</th>
+                    <td>{{ agendamento.tutor_cpf.tel }}</td>
+                </tr>
+                <tr>
+                    <th>Tipo:</th>
+                    <td>{{ agendamento.tipo }}</td>
+                </tr>
+                <tr>
+                    <th>Data:</th>
+                    <td>{{ agendamento.data|date:'d/m/Y' }} | {{ agendamento.horario }}</td>
+                </tr>
+                <tr>
+                    <th>Observação:</th>
+                    <td><pre>{{ agendamento.obs }}</pre></td>
+                </tr>
+            </table>
+        </div>
+        <div class="botoes-acoes">
+            <form action="{% url 'confirmacao' agendamento.id_agendamento %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" name="status" value="Confirmado" class="botao-confirmar">Confirmar</button>
+                <button type="submit" name="status" value="Cancelado" class="botao-cancelar">Cancelar</button>
+            </form>
+            <a href="{% url 'prontuario' agendamento.id_agendamento %}" class="botao-iniciar-atendimento">Iniciar Atendimento</a>
+        </div>
+    </div>
+</body>
+
+</html>

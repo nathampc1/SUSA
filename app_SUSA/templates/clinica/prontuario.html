@@ -1,0 +1,92 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observações do Acompanhamento</title>
+    <link rel="stylesheet" href="{% static 'CSS/prontuario.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <a href="/agendamentos"><img src="{% static 'imagens/back.png' %}" id="voltar" draggable="false"></a>
+        <h1 class="titulo">Observações do Acompanhamento</h1>
+        <form action="{% url 'finalizar_consulta' agendamento.id_agendamento %}" method="POST">
+            {% csrf_token %}
+
+            <div class="secao">
+                <label for="nota_acompanhamento">Nota de Acompanhamento</label>
+                <select name="nota_acompanhamento" id="nota_acompanhamento" class="select">
+                    <option value="I">Interno</option>
+                    <option value="E">Externo</option>
+                </select>
+            </div>
+
+            <div class="secao historico-obs">
+                <div class="historico-container">
+                    {% if historico_observacoes %}
+                        {% for observacao in historico_observacoes %}
+                            <div class="observacoes-atuais" readonly>
+                                {{ observacao }}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="observacoes-atuais" readonly>
+                            Nenhuma observação encontrada para este pet.
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="nova-obs-container">
+                    <textarea name="nova_observacao" class="nova-observacao" placeholder="Digite aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="secao">
+                <h2 class="subtitulo">Vacina</h2>
+                <div class="vacinas">
+                    {% for vacina in vacinas %}
+                    <div class="vacina-item">
+                        <span>Nome: {{ vacina.descricao }}</span>
+                        <input type="text" name="lote_{{ vacina.id_servico }}" placeholder="Lote..." class="input-lote">
+                        <label for="reaplicacao_{{ vacina.id_servico }}">Reaplicação</label>
+                        <input type="date" name="reaplicacao_{{ vacina.id_servico }}" class="input-data">
+                        <input type="checkbox" name="vacina_selecionada" value="{{ vacina.id_servico }}" class="check-vacina">
+                    </div>
+                    {% empty %}
+                    <p>Nenhuma vacina disponível.</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="secao">
+                <h2 class="subtitulo">Status do Animal</h2>
+                <select name="status_animal" id="status_animal" class="select" onchange="RetornoCampos()">
+                    <option value="Estável">Estável</option>
+                    <option value="Retorno">Retorno</option>
+                </select>
+                <div class="campos-retorno" style="display: none;">
+                    <div>
+                        <label for="data-retorno">Data de Retorno</label>
+                        <input type="date" id="data-retorno" name="data_retorno" class="input-data-retorno">
+                    </div>
+                    <div>
+                        <label for="hora-retorno">Hora de Retorno</label>
+                        <input type="time" id="hora-retorno" name="hora_retorno" class="input-hora-retorno">
+                    </div>
+                </div>
+            </div>
+
+            <div class="secao">
+                <button type="submit" class="finalizar">Finalizar</button>
+            </div>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="{% static 'JS/prontuario.js' %}"></script>
+</body>
+
+</html>

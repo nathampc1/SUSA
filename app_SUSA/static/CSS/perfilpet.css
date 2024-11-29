@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+h2 {
+    text-align: center;
+}
+body {
+    background-color: #d2e2d0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    display: flex;
+    justify-items: center;
+    background-color: powderblue;
+}
+
+.back-btn {
+    font-size: 1.5em;
+    text-decoration: none;
+    color: #333;
+}
+
+h2 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.pet-info {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.info-group {
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-group label {
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.info-group input, .info-group select {
+    width: 100px;
+    margin-top: 5px;
+    padding: 5px;
+    text-align: center;
+    border: none;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-right: 30px;
+}
+
+.btn {
+    background-color: #bfbfbf;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 30px;
+}
+
+.consultas, .procedimentos, .vacinas {
+    margin-top: 20px;
+}
+
+h3 {
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.procedimento-item, .vacina-item, .consultas-item {
+    background-color: #d9d9d9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.procedimento-item p, .vacina-item p {
+    font-size: 0.9em;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+.info {
+    width: 70%;
+    margin: 30px auto;
+}
+#voltar{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    user-select: none;
+}

@@ -1,0 +1,81 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de Agendamentos</title>
+    <link rel="stylesheet" href="{% static 'CSS/agendamentos.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Tabela de Agendamentos</h1>
+
+        <form action="{% url 'filtrar_agendamentos' %}" method="GET" class="form-filtros">
+            <div class="filtros">
+                
+                <input type="text" name="nome_solicitante" id="nome_solicitante" placeholder="Nome do Solicitante" value="{{ filtros.nome|default:'' }}">
+
+                
+                <input type="date" name="data_agendamento" id="data_agendamento" value="{{ filtros.data|default:'' }}">
+
+                
+                <select name="status_agendamento" id="status_agendamento">
+                    <option value="" {% if not filtros.status %}selected{% endif %}>Status</option>
+                    <option value="pendente" {% if filtros.status == "pendente" %}selected{% endif %}>Pendente</option>
+                    <option value="confirmado" {% if filtros.status == "confirmado" %}selected{% endif %}>Confirmado</option>
+                    <option value="cancelado" {% if filtros.status == "cancelado" %}selected{% endif %}>Cancelado</option>
+                    <option value="concluido" {% if filtros.status == "concluido" %}selected{% endif %}>Concluído</option>
+                </select>
+
+               
+                <select name="tipo_consulta" id="tipo_consulta">
+                    <option value="" {% if not filtros.tipo %}selected{% endif %}>Tipo</option>
+                    <option value="vacina" {% if filtros.tipo == "vacina" %}selected{% endif %}>Vacinação</option>
+                    <option value="consulta" {% if filtros.tipo == "consulta" %}selected{% endif %}>Consulta</option>
+                    <option value="vacina e consulta" {% if filtros.tipo == "vacina e consulta" %}selected{% endif %}>Vacina e Consulta</option>
+                </select>
+
+                
+                <button type="submit" class="botao-filtrar">Filtrar</button>
+            </div>
+        </form>
+
+        <table class="tabela-agendamentos">
+            <thead>
+                <tr>
+                    <th>Solicitante</th>
+                    <th>Data de Agendamento</th>
+                    <th>Status</th>
+                    <th>Tipo de Consulta</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for agendamento in agendamentos %}
+                <tr>
+                    <td>{{ agendamento.tutor_cpf.nome }}</td>
+                    <td>{{ agendamento.data|date:'d/m/Y' }}</td>
+                    <td>{{ agendamento.status }}</td>
+                    <td>{{ agendamento.tipo }}</td>
+                    <td>
+                        
+                        <a href="{% url 'confirmar_consulta' agendamento.id_agendamento %}" class="acao-link">Ver Detalhes</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">Nenhum agendamento encontrado.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+
+</html>

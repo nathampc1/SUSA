@@ -1,0 +1,206 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #c0d6c3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.back-button {
+    font-size: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+}
+
+.sections {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.section {
+    margin: 40px auto;
+    width: 35%;
+}
+
+.section h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.item-list {
+    background-color:#979595;
+    border-radius: 8px;
+    padding: 10px;
+    color: #fff;
+    overflow-y: auto;
+    max-height: 150px;
+}
+
+.item {
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.item:hover {
+    background-color: rgb(19, 160, 54);
+    cursor: pointer;
+}
+
+.add-button {
+    width: 100%;
+    padding: 8px;
+    background-color: #4caf50;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.confirmacao {
+    margin: 50px auto;
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.confirmacao p {
+    margin: 10px 0 5px;
+}
+
+.confirmacao input {
+    width: 80%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    text-align: center;
+    background-color: #eeeeee85;
+    color: #333;
+}
+
+input[type="text"] {
+    background-color: #bbbbbb;
+}
+
+input[type="text"]::placeholder {
+    color: #fff;
+    opacity: 1;
+}
+
+.edit-button {
+    background: transparent;
+    border: none;
+    color: #39523a;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.edit-button:hover {
+    color: #000000;
+    text-decoration: underline;
+}
+
+.confirm-button {
+    width: 80%;
+    padding: 8px;
+    background-color: #4caf50;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ------------------------------------------ */
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#edit-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#edit-form p {
+    margin: 10px 0 5px;
+}
+
+#edit-form input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.confirm-button:hover {
+    background-color: #45a049;
+}
+
+.close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #333;
+}

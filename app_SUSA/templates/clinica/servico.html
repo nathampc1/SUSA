@@ -1,0 +1,98 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/servico.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Gerenciamento de Produtos</h1>
+        <div class="sections">
+            
+            <div class="section">
+                <h2>Vacinas</h2>
+                <div class="item-list">
+                    {% for vacina in vacinas %}
+                        <div class="item" id="vacina-{{ vacina.id_servico }}">
+                            {{ vacina.descricao }} - R$ {{ vacina.preco|floatformat:2 }}
+                            <button class="edit-button" onclick="mostrarEdit('{{ vacina.id_servico }}', '{{ vacina.descricao }}', '{{ vacina.preco }}', 'vacina')">Editar</button>
+                            <form action="/excluir/" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="id_servico" value="{{ vacina.id_servico }}">
+                                <button type="submit" class="edit-button">Excluir</button>
+                            </form>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="confirmacao">
+                <form action="/cadastrarV/" method="POST" target="main-iframe" onsubmit="return ValidarFormulario('vacina')">
+                    {% csrf_token %}
+                    <p>Nome:</p>
+                    <input type="text" id="descVacina" name="descVacina">
+                    <p>Valor:</p>
+                    <input type="text" id="valVacina" name="valVacina" placeholder="0,00">
+                    <button type="submit" class="confirm-button">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="sections">
+            
+            <div class="section">
+                <h2>Consultas</h2>
+                <div class="item-list">
+                    {% for consulta in consultas %}
+                        <div class="item" id="consulta-{{ consulta.id_servico }}">
+                            {{ consulta.descricao }} - R$ {{ consulta.preco|floatformat:2 }}
+                            <button class="edit-button" onclick="mostrarEdit('{{ consulta.id_servico }}', '{{ consulta.descricao }}', '{{ consulta.preco }}', 'consulta')">Editar</button>
+                            <form action="/excluir/" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="id_servico" value="{{ consulta.id_servico }}">
+                                <button type="submit" class="edit-button">Excluir</button>
+                            </form>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="confirmacao">
+                <form action="/cadastrarC/" method="POST" target="main-iframe"  onsubmit="return ValidarFormulario('consulta')">
+                    {% csrf_token %}
+                    <p>Nome:</p>
+                    <input type="text" id="descConsulta" name="descConsulta">
+                    <p>Valor:</p>
+                    <input type="text" id="valConsulta" name="valConsulta" placeholder="0,00">
+                    <button type="submit" class="confirm-button">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="popup-overlay" id="popupOverlay">
+            <div id="edit-form">
+                <button class="close-popup" onclick="closePopup()">×</button>
+                <form id="updateForm" method="POST" action="/atualizar/" onsubmit="return ValidarFormulario('editar')">
+                    {% csrf_token %}
+                    <input type="hidden" name="id_servico" id="edit-id">
+                    <p>Nome:</p>
+                    <input type="text" id="edit-desc" name="descricao">
+                    <p>Valor:</p>
+                    <input type="text" id="edit-valor" name="preco" placeholder="0,00">
+                    <input type="hidden" name="tipo_servico" id="edit-tipo">
+                    <button type="submit" class="confirm-button">Atualizar</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="{% static 'JS/servico.js' %}"></script>
+</body>
+</html>

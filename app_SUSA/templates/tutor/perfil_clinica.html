@@ -1,0 +1,108 @@
+{% load static %}
+{% load cnpj_filters %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Veterinária</title>
+    <link rel="stylesheet" href="{% static 'CSS/perfil_clinica.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <a href="/busca"><img src="{% static 'imagens/back.png' %}" id="voltar" draggable="false"></a>
+        <h1>{{clinica.nome}}</h1>
+        <button class="message-button">Mensagem</button>
+        <section class="secao">
+            <div class="info">
+                <p>E-mail: {{clinica.email}}</p>
+                <p>Telefone: {{clinica.tel}}</p>
+            </div>
+        </section>
+        <form action="/realizar_agendamento/{{ clinica.cnpj|format_cnpj }}/" method="POST" onsubmit="return validarFormulario()">
+        {% csrf_token %}
+            <section class="secao">
+                <h2>Vacinas</h2>
+                <div class="card">
+                    {% for vacina in vacina %}
+                    <div class="item">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="vacina -- {{vacina.id_servico}}" value="{{ vacina.id_servico }}"
+                                id="vacina-{{ vacina.id_servico }}">
+                            <span class="checkmark"></span>
+                        </label>
+                        <span>{{ vacina.descricao }}</span>
+                        <span>R${{ vacina.preco }}</span>
+                    </div>
+                    {% empty %}
+                    <p>Não há vacinas no catálogo.</p>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section class="secao">
+                <h2>Consultas</h2>
+                <div class="card">
+                    {% for consulta in consulta %}
+                    <div class="item">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="consulta -- {{ consulta.id_servico }}" value="{{ consulta.id_servico }}"
+                                id="consulta-{{ consulta.id_servico }}">
+                            <span class="checkmark"></span>
+                        </label>
+                        <span>{{ consulta.descricao }}</span>
+                        <span>R${{ consulta.preco }}</span>
+                    </div>
+                    {% empty %}
+                    <p>Não há consultas no catálogo.</p>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section class="secao">
+                <h2>Agendar</h2>
+                <div class="card ajustar-input">
+                    <div class="input-grupo">
+                        <label for="data">Data:</label>
+                        <input type="date" id="data" name="data">
+                    </div>
+                    <div class="input-grupo">
+                        <label for="horario">Horário:</label>
+                        <input type="time" id="horario" name="horario">
+                    </div>
+                </div>
+            </section>
+
+            <section class="secao">
+                <h2>Selecione um pet</h2>
+                <div class="card">
+                    <div class="filtro-select">
+                        <select id="filtro-animacao"  name="filtro-animacao" class="filtro-animacao" onchange="filtro_distancia()">
+                            <option value = "" disabled selected>Pets</option>
+                            {% for pet in pets %}
+                            <option value="{{ pet.id_pet }}">{{ pet.nome }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <section class="secao">
+                <h2>Descreva o ocorrido</h2>
+                <textarea placeholder="Digite aqui..." id="obs-agendamento" name="obs_agendamento"></textarea>
+            </section>
+
+            <section class="secao">
+                <input type="submit" value="Confirmar" id="btn-confirmar" class="confirm-button">
+            </section>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <script src="{% static 'JS/perfil_clinica.js' %}"></script>
+</body>
+
+</html>

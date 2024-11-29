@@ -1,0 +1,70 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/perfil.css' %}">
+</head>
+
+<body>
+    <h2 id="nomeUsuario">{{request.session.nome}}</h2>
+    <button id="btnEditar" class="formatBtn" onclick="editarPerfil()">Editar</button>
+    <div>
+        <div id="foto-perfil" onclick="clickFILE()">
+            <img src="{% static 'imagens/icon-usuario.jpg' %}" alt="Ícone do usuário" draggable="false" id="icone">
+        </div>
+    </div>
+    <div id="erros" class="centralizado" style="color:red;"></div>
+    <form action="/atualizarDadosT/" method="POST" target="main-iframe" onsubmit="return validarFormulario('tutor')">
+        {% csrf_token %}
+        <div class="centralizado">
+            <div class="grupo-preencher" id="email-campo">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" disabled="true" value="{{ email }}" required>
+            </div>
+            <div class="grupo-preencher" id="telefone-campo">
+                <label for="telefone">Telefone</label>
+                <input type="text" id="telefone" name="telefone" disabled="true" value="{{ telefone }}" required>
+            </div>
+        </div>
+
+        <div class="centralizado">
+            <div class="grupo-preencher">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" disabled="true" value="{{ nome }}">
+            </div>
+            <div class="grupo-preencher">
+                <label for="Nascimento">Nascimento</label>
+                <input type="date" id="nasc" name="nasc" placeholder="Nascimento" value="{{ nascimento }}">
+            </div>
+        </div>
+
+        <div class="centralizado">
+            <div class="grupo-preencher" id="senha-campo">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite a senha..." disabled="true">
+            </div>
+
+            <div class="grupo-preencher" id="confirmSenha-campo">
+                <label for="confirmSenha">Confirmar Senha</label>
+                <input type="password" id="confirmSenha" name="confirmSenha" placeholder="Confirme a senha..." disabled="true">
+            </div>
+
+            <button type="button" id="alterar-senha" class="mostrar-senha-button">Mostrar</button>
+
+        </div>
+        <div class="centralizado">
+            <input type="submit" value="Salvar" id="btnSalvar">
+            <button type="button" id="btnCancelar" onclick="desabilitarBtn()">Cancelar</button>
+        </div>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <script src="{% static 'JS/perfil.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="{% static 'CSS/cadastro.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'imagens/icon.png' %}">
+</head>
+
+<body>
+    <div class="container">
+        <a href="/"><img src="{% static 'imagens/back.png' %}" id="voltar" draggable="false"></a>
+
+        <div id="seletor" class="centralizar">
+            <h1>Cadastro</h1>
+
+            <h3>Tipo de Cadastro:</h3>
+
+            {% if erro %}
+            <div id="erros" style="color:red;">
+                {{ erro }}
+            </div>
+            {% endif %}
+
+            <form action="/cadastrar/" method="post" onsubmit="return validarFormulario()">
+                {% csrf_token %}
+                <div class="custom-select-wrapper" id="opcoes-campo">
+                    <div class="custom-select-trigger">Escolha uma opção</div>
+                    <div class="custom-options">
+                        <div class="custom-option" data-value="clinica">Clínica</div>
+                        <div class="custom-option" data-value="tutor">Tutor</div>
+                    </div>
+
+                    <select id="tipoUsuario" name="Usuario">
+                        <option value="">Selecione...</option>
+                        <option value="clinica">Clínica</option>
+                        <option value="tutor">Tutor</option>
+                    </select>
+                </div>
+
+                <div id="endereco" class="centralizar">
+                    <div id="busca-cep">
+                        <input type="text" id="cep" name="cep" required placeholder="CEP">
+                        <button id="buscarEndereco" class="btn">Buscar</button>
+                    </div>
+
+                    <input type="text" id="rua" name="rua" required placeholder="Rua">
+
+                    <input type="number" id="numero" name="numero" required placeholder="Número">
+
+                    <input type="text" id="bairro" name="bairro" required placeholder="Bairro">
+
+                    <input type="text" id="cidade" name="cidade" required placeholder="Cidade">
+
+                    <input type="text" id="estado" name="estado" required placeholder="Estado">
+                </div>
+
+                <div id="clinicaForm" style="display:none;" class="centralizar">
+                    <h2>Cadastro de Clínica</h2>
+                    <input type="text" id="nomeClinica" name="nomeClinica" placeholder="Nome da Clínica">
+
+                    <input type="text" id="telClinica" name="telClinica" placeholder="Telefone">
+
+                    <input type="email" id="emailClinica" name="emailClinica" placeholder="E-mail">
+
+                    <input type="text" id="cnpjClinica" name="cnpjClinica" placeholder="CNPJ">
+
+                    <input type="text" id="CRMV" name="CRMV" placeholder="CRMV">
+
+                    <div class="senha-container">
+                        <input type="password" id="senhaClinica" name="senhaClinica" placeholder="Senha">
+                        <button type="button" id="senha-clinica" class="mostrar-senha-button">Mostrar</button>
+                    </div>
+
+                    <div class="senha-container">
+                        <input type="password" id="confirm-senhaCli" name="confirm-senhaCli"
+                            placeholder="Confirmar senha">
+                        <button type="button" id="confirm-senha-clinica" class="mostrar-senha-button">Mostrar</button>
+                    </div>
+                </div>
+
+                <div id="tutorForm" style="display:none;" class="centralizar">
+                    <h2>Cadastro de Tutor</h2>
+                    <input type="text" id="nomeTutor" name="nomeTutor" placeholder="Nome">
+
+                    <input type="text" id="telTutor" name="telTutor" placeholder="Telefone">
+
+                    <input type="email" id="emailTutor" name="emailTutor" placeholder="E-mail">
+
+                    <label style="margin-left: 110px;">Nascimento</label>
+                    <input type="date" id="nascTutor" name="nascTutor" placeholder="Nascimento">
+
+                    <input type="text" id="cpfTutor" name="cpfTutor" placeholder="CPF">
+
+                    <div class="senha-container">
+                        <input type="password" id="senhaTutor" name="senhaTutor" placeholder="Senha">
+                        <button type="button" id="senha-tutor" class="mostrar-senha-button">Mostrar</button>
+                    </div>
+
+                    <div class="senha-container">
+                        <input type="password" id="confirm-senhaTutor" name="confirm-senhaTutor"
+                            placeholder="Confirmar senha">
+                        <button type="button" id="confirm-senha-tutor" class="mostrar-senha-button">Mostrar</button>
+                    </div>
+                </div>
+
+
+                <button type="submit" class="btn">Cadastrar</button>
+            </form>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+        <script src="{% static 'JS/cadastro.js' %}"></script>
+</body>
+
+</html>

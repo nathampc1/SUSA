@@ -1,0 +1,46 @@
+{% load static %}
+{% load cnpj_filters %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Clínicas</title>
+    <link rel="stylesheet" href="{% static 'CSS/busca.css' %}">
+</head>
+
+<body>
+    <h2>Clínicas Veterinárias</h2>
+    <div class="container">
+        
+        <div class="filtro-select">
+            <select id="filtro-animacao" class="filtro-animacao" onchange="filtro_distancia()">
+                <option disabled selected>Filtrar</option>
+                <option value="preco">Ordenar por preço</option>
+                <option value="decrescente">Ordenar por distância decrescente</option>
+                <option value="crescente">Ordenar por distância crescente</option>
+            </select>
+        </div>
+
+        <div class="clinica-lista" id="clinica-lista">
+            {% for clinica in clinicas %}
+            <a href="/perfil_clinica/{{ clinica.cnpj|format_cnpj }}" target="main-iframe">
+                <div class="clinica-item" id="{{clinica.cnpj}}">
+                    <div class="clinica-info">
+                        <p class="clinica-name">{{ clinica.nome }}</p>
+                        <p class="clinica-distancia"></p> 
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <script src="{% static 'JS/busca.js' %}" defer></script>
+</body>
+
+</html>

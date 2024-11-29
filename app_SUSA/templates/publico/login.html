@@ -1,0 +1,47 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'CSS/login.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'imagens/icon.png' %}">
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-logo">
+                <img src="{% static 'imagens/icon.png' %}" alt="Logo" class="logo-image">
+            </div>
+            <h2 class="login-title">Login</h2>
+
+            <div class="mensagem-error" id="mensagemErro">
+                {% if erro %}{{ erro }}{% endif %}
+            </div>
+
+            <form action="/Realizarlogin/" method="POST" onsubmit="return validarFormulario()">
+                {% csrf_token %}
+                <input type="text" name="cpf_cnpj" id="cpf_cnpj" placeholder="CPF ou CNPJ" class="login-input" oninput="formatarCpfCnpj(this)" maxlength="18">
+
+                <div class="senha-container">
+                    <input type="password" name="senha" placeholder="Senha" class="login-input" id="senha-input" maxlength="25">
+                    <button type="button" id="alterar-senha" class="mostrar-senha-button">Mostrar</button>
+                </div>
+
+                <div class="login-links">
+                    <a href="" class="login-link">Esqueci a senha</a>
+                    <a href="/cadastro" class="login-link">Cadastre-se</a>
+                </div>
+                <button type="submit" class="login-button">Entrar</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <script src="{% static 'JS/login.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Pet</title>
+    <link rel="stylesheet" href="{% static 'CSS/perfilpet.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <a href="/meupet"><img src="{% static 'imagens/back.png' %}" id="voltar" draggable="false"></a>
+        <h2>ID PET: <span id="pet-id">{{ pet.id_pet }}</span></h2>
+        <form action="/atualizar_pet/{{ pet.id_pet }}/" method="POST" onsubmit="return ValidarFormulario()">
+            {% csrf_token %}
+            <section class="pet-info">
+                <div class="info-group">
+                    <label>Nome:</label>
+                    <input type="text" name="nome" value="{{ pet.nome }}" id="nome">
+                </div>
+                <div class="info-group">
+                    <label>Nasc.:</label>
+                    <input type="date" name="nasc" value="{{ pet.nasc|date:'Y-m-d' }}" id="nasc">
+                </div>
+                <div class="info-group">
+                    <label>Peso:</label>
+                    <input type="text" name="peso" value="{{ pet.peso|floatformat:2 }}" id="peso">
+                </div>
+                <div class="info-group">
+                    <label>Sexo:</label>
+                    <select name="sexo" id="sexo">
+                        <option value="M" {% if pet.sexo == "M" %}selected{% endif %}>Macho</option>
+                        <option value="F" {% if pet.sexo == "F" %}selected{% endif %}>Fêmea</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="buttons">
+                <input type="submit" value="Atualizar" class="btn">
+            </section>
+        </form>
+
+
+        <section class="info">
+            <h3>Consultas Agendadas</h3>
+            {% if consultas_agendadas %}
+                {% for consulta in consultas_agendadas %}
+                    <div class="consultas-item">
+                        <p>Data: {{ consulta.data|date:"d/m/Y" }}</p>
+                        <p>Horário: {{ consulta.horario }}</p>
+                        <p>Status: {{ consulta.status }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Nenhuma consulta agendada...</p>
+            {% endif %}
+        </section>
+
+        <section class="info">
+            <h3>Consultas Realizadas (Procedimentos)</h3>
+            {% if consultas_realizadas %}
+                {% for procedimento in consultas_realizadas %}
+                    <div class="procedimento-item">
+                        <p>Data: {{ procedimento.data|date:"d/m/Y" }}</p>
+                        <p>Observação: {{ procedimento.nota }}</p>
+                        <p>Status do Pet: {{ procedimento.statuspet }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Nenhum procedimento realizado...</p>
+            {% endif %}
+        </section>
+
+        <section class="info">
+            <h3>Vacinas</h3>
+            {% if vacinas_aplicadas %}
+                {% for vacina in vacinas_aplicadas %}
+                    <div class="vacina-item">
+                        <p>Nome: {{ vacina.nome }}</p>
+                        <p>Lote: {{ vacina.lote }}</p>
+                        <p>Aplicação: {{ vacina.fab|date:"d/m/Y" }}</p>
+                        <p>Reaplicação: {{ vacina.validade|date:"d/m/Y" }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Nenhuma vacina aplicada...</p>
+            {% endif %}
+        </section>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <script src="{% static 'JS/perfilpet.js' %}"></script>
+</body>
+
+</html>

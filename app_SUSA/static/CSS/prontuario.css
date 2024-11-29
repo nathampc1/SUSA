@@ -1,0 +1,207 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+.container {
+    width: 60%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+}
+
+.titulo {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.secao {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.select {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.observacoes-atuais {
+    width: 90%;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.nova-obs-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.nova-observacao {
+    width: 90%;
+    max-width: 600px;
+    height: 80px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    resize: none;
+}
+
+.botao {
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.retroceder {
+    background-color: #f1c40f;
+    color: white;
+}
+
+.retroceder:hover {
+    background-color: #d4a20c;
+}
+
+.adicionar {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.adicionar:hover {
+    background-color: #28a45f;
+}
+
+.finalizar {
+    text-align: center;
+    height: 50px;
+    border: none;
+    background-color: #2980b9;
+    color: white;
+    width: 120px;
+    border-radius: 10px;
+    margin: 20px auto;
+}
+
+.finalizar:hover {
+    cursor: pointer;
+    background-color: #285f85;
+}
+
+.vacinas {
+    margin-top: 10px;
+}
+
+.vacina-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.input-lote,
+.input-data {
+    width: 30%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.vacina-item span {
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.check-vacina {
+    margin-left: 10px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.historico-obs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.campos-retorno {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.campos-retorno div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-data-retorno,
+.input-hora-retorno {
+    width: 100%;
+    max-width: 200px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#voltar {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 20px;
+}
+
+label {
+    text-align: center;
+    font-weight: bold;
+    display: block;
+    padding: 10px;
+}
+
+.subtitulo {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: center;
+}
+.historico-container {
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto; 
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+        }
+
+        .bemvindo-box {
+            text-align: center;
+            padding: 40px;
+            color: black;
+            border-radius: 8px;
+            max-width: 80%;
+        }
+
+        .bemvindo-box h1 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bemvindo-box">
+        <h1>Seja Bem-vindo, {{ request.session.nome }}!</h1>
+    </div>
+</body>
+</html>
